@@ -1,0 +1,13 @@
+{
+  "name": "lando-cypress-example",
+  "version": "1.0.0",
+  "description": "Example site with Cypress end-to-end tests",
+  "main": "index.js",
+  "repository": "https://github.com/sitecrafting/lando-cypress-example",
+  "author": "Coby Tamayo <ctamayo@sitecrafting.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "cypress": "^3.0.2"
+  }
+}

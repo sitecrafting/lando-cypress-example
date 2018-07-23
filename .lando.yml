@@ -1,0 +1,48 @@
+name: lando-cypress-example
+recipe: lamp
+config:
+  webroot: web
+
+services:
+
+  node:
+    type: node:custom
+
+    globals:
+      # use yarn to manage node packages: it's like npm but better
+      yarn: '1.7.0'
+
+        # install node dependencies when building the node service
+      run:
+        - cd $LANDO_MOUNT && yarn
+        - cd $LANDO_MOUNT && yarn cypress install
+
+    # use the custom Docker image for running Cypress inside a Lando Node service
+    overrides:
+      services:
+        image: 'sitecrafting/lando-node-cypress:8.11'
+
+tooling:
+
+  # Support arbitrary `lando yarn` commands.
+  # You don't necessarily need this if all you want to do
+  # with Yarn is run Cypress tests, but it can be handy
+  # for installing other dependencies or troubleshooting
+  # issues with Yarn/Cypress
+  yarn:
+    service: node
+
+  # Ditto for `lando node` commands
+  node:
+    service: node
+
+  cypress:
+    service: node
+    cmd: 'yarn cypress'
+    description: 'Run arbitrary cypress commands'
+
+  e2e:
+    service: node
+    cmd: 'yarn cypress run'
+    description: 'Run end-to-end tests via cypress'
+
