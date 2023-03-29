@@ -19,8 +19,7 @@ services:
 
     # use the custom Docker image for running Cypress inside a Lando Node service
     overrides:
-      services:
-        image: 'sitecrafting/lando-node-cypress:8.11'
+      image: 'sitecrafting/lando-node-cypress:8.11'
 
 tooling:
 
